@@ -1,0 +1,1261 @@
+/* ==========================================================================
+   1. REGOLE GENERALI
+   ========================================================================== */
+
+/* In questo modo mi assicuro che la pagina sfrutti tutta l'altezza dello schermo disponibile */
+body,
+html {
+    height: 100%;
+}
+
+/* Impostazioni di base del corpo pagina: colore di backup scuro, elimina 
+   i margini predefiniti del browser e imposta il font istituzionale del sito */
+body {
+    background-color: #000;
+    /* Colore di backup mentre carica il video */
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+}
+
+/* Stili predefiniti per i titoli per garantire consistenza cromatica */
+h1 {
+    color: white;
+    font-weight: 600;
+}
+
+h2 {
+    color: rgb(15, 140, 138);
+    text-align: center;
+}
+
+h4 {
+    color: rgb(144, 30, 140);
+}
+
+/* Selettore per ID: definisce lo stile unico del titolo di benvenuto */
+#titolo_principale {
+    color: #fff;
+    text-shadow:
+        2px 2px 2px #8eb9d5; /* Ombra sfumata per dare leggibilità */
+    text-align: center;
+    font-style: italic;
+    font-family: 'Georgia', serif;
+    font-size: 2.5em; /* Dimensione scalabile rispetto al font di base */
+    padding: 1%;
+    margin-top: 1%;
+}
+
+/* Stile per il sottotitolo della homepage */
+#sottotitolo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: #ffffff;
+    letter-spacing: 1.5px;
+    opacity: 0.8; /* Rende la scritta leggermente trasparente rispetto al titolo */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    margin-top: 10px;
+    letter-spacing: 0.5px; /* Spaziatura tra i caratteri per aumentare l'eleganza */
+}
+
+/* ==========================================================================
+   2. GESTIONE SFONDO VIDEO E EFFETTI "VETRO" (Glassmorphism)
+   ========================================================================== */
+
+/* Creo un livello fisso che copre l'intero schermo e si posiziona dietro 
+   a tutti gli elementi grazie allo z-index negativo */
+
+.video-background {
+    position: fixed; /* Rimane bloccato anche durante lo scroll della pagina */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Mette il livello sullo sfondo, sotto i testi e le card */
+    background-color: black; /* Sfondo di sicurezza se il video fallisce */
+}
+
+#bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ritaglia e adatta il video senza deformarlo */
+    filter: brightness(50%); /* Scurisce il video al 50% per garantire il contrasto con i testi bianchi */
+}
+
+/* Effetto Glassmorphism (Vetro Sfumato) sulla card biografica */
+.card-presentazione {
+    background: rgba(255, 255, 255, 0.9); /* Sfondo bianco con opacità al 90% */
+    backdrop-filter: blur(8px); /* Sfoca ciò che si trova dietro la card (il video in movimento) */
+    -webkit-backdrop-filter: blur(8px); /* Supporto specifico per il motore di rendering Safari/Chrome vecchi */
+    border-radius: 20px;
+    padding: 50px;
+    max-width: 750px;
+    margin: 80px auto; /* Centra orizzontalmente la card e dà margine sopra/sotto */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); /* Ombra pronunciata per dare l'effetto di galleggiamento */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Sottile bordo semitrasparente che accentua l'effetto vetro */
+}
+
+.testo-bio {
+    font-family: 'Georgia', serif;
+    font-size: 1.1rem;
+    line-height: 1.8; /* Interlinea aumentata per facilitare la lettura del testo */
+    color: #2c3e50;
+    text-align: center;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.testo-bio h1,
+.testo-bio h2,
+.testo-bio p {
+    font-weight: normal;
+}
+
+.highlight {
+    color: #0003af;
+    text-shadow:
+        4px 4px 3px #e5eef4;
+    font-style: italic;
+    margin-top: 20px;
+    font-weight: normal;
+}
+
+.image-hero {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 30px;
+    padding: 50px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Media Query: corregge il layout della riga su schermi piccoli invertendo l'ordine degli elementi */
+@media (max-width: 768px) {
+    .card-presentazione .row {
+        flex-direction: column-reverse; /* Sposta l'immagine sopra il testo su mobile */
+    }
+
+    .image-hero {
+        height: auto;
+    }
+}
+
+#categorietiktok {
+    text-align: left;
+    font-family: 'Georgia', sans-serif;
+}
+
+/* ==========================================================================
+   3. BOTTONI INTERATTIVI CON EFFETTO 3D (Transizioni e Trasformazioni)
+   ========================================================================== */
+
+/* Stile base del bottone rettangolare */
+.btn-rettangolare {
+    background-color: #6e70d2;
+    color: white;
+    font-family: 'Georgia', serif;
+    font-size: 1.1rem;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-weight: normal;
+    box-shadow: 0 4px 0px #4d4f96; /* Ombra netta e non sfumata in basso per simulare lo spessore del tasto */
+    transition: all 0.2s ease; /* Transizione fluida su tutte le proprietà animate */
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Stato Hover: quando l'utente passa il mouse sopra il bottone */
+.btn-rettangolare:hover {
+    background-color: #5b5da8;
+    transform: translateY(2px); /* Sposta il bottone in basso di 2px */
+    box-shadow: 0 2px 0px #4d4f96; /* Riduce l'ombra a 2px simulando una parziale pressione */
+    color: white;
+}
+
+/* Stato Active: nell'esatto momento in cui il bottone viene cliccato */
+.btn-rettangolare:active {
+    transform: translateY(4px); /* Si abbassa di 4px (piena escursione) */
+    box-shadow: 0 0px 0px #4d4f96; /* L'ombra si azzera: il bottone tocca virtualmente il fondo */
+}
+
+h2.colorato {
+    color: rgb(59, 59, 141);
+}
+
+/* ==========================================================================
+   4. SISTEMA DI CARD E LAYOUT DEL BLOG (Integrazione Custom-Bootstrap)
+   ========================================================================== */
+.book {
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+/* Personalizzazione dei Tab (schede) di Bootstrap nella sezione libro */
+.card-header {
+    background-color: #E0F2F7;
+    border-bottom: 1px solid #B3E5FC;
+    margin-bottom: 0;
+    backdrop-filter: blur(5px)
+}
+
+.card-header-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap; /* Impedisce alle tab di andare a capo su schermi normali */
+    margin: 0 auto;
+    padding: 10px 0;
+    border-bottom: none;
+    margin-bottom: -1px; /* Corregge un pixel di disallineamento tipico dei bordi Bootstrap */
+}
+
+/* Modifichiamo i link per essere uguali alla navbar */
+.card-header-tabs .nav-link {
+    white-space: nowrap; /* Forza il testo della tab su una sola riga */
+    color: #305b77;
+    background: transparent;
+    border: none;
+    border-radius: 8px 8px 0 0;
+    padding: 10px 20px;
+    transform: none;
+    transition: background-color 0.3s ease;
+}
+
+/* Effetto quando passi il mouse */
+.card-header-tabs .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    color: #305b77;
+    transform: none;
+}
+
+.card-header-tabs .nav-link.active {
+    background-color: #ffffff;
+    color: #05445E;
+    font-weight: bold;
+    transform: none;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+}
+
+
+.card-header-tabs .nav-item {
+    flex: 0 1 auto; /* Permette alla scheda di stringersi ma non di allargarsi oltre il suo testo */
+    margin: 0 5px;
+}
+
+/* Struttura flessibile delle card in griglia */
+.col .card {
+    border: none;
+    background: transparent;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column; /* Dispone il contenuto della card in verticale */
+    flex-grow: 1; /* Forza le card della stessa riga ad avere la stessa identica altezza */
+}
+
+/* Centratura generale della griglia principale */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Animazione Hover sulle Card: sollevamento ed effetto ombra colorata illuminante */
+.col .card:hover {
+    transform: translateY(-10px); /* Solleva la card verso l'alto di 10px */
+    box-shadow: 0 15px 35px rgba(31, 111, 115, 0.6); /* Genera un'ombra morbida con il colore del brand */
+}
+
+/* Ottimizzazione delle copertine delle card */
+.card-img-top {
+    height: 250px;
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+    display: block;
+    object-fit: cover; /* Ritaglia l'immagine proporzionalmente per non distorcerne le proporzioni */
+    margin: 0;
+}
+
+/* Stile del corpo interno della card con effetto semitrasparente */
+.card-body {
+    border: none;
+    background-color: rgba(224, 255, 255, 0.85);
+    font-family: Arial, Helvetica, sans-serif;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 0 0 15px 15px;
+    padding: 40px 30px;
+    width: 100%;
+    box-shadow: 0 10px 20px #1a617aa6;
+    margin-top: -1px;
+    transition: box-shadow 0.3s ease-in-out;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between; /* Spinge il bottone sempre in fondo alla card, allineandolo visivamente agli altri */
+}
+
+/* Sovrascrittura dei bottoni Bootstrap interni alle card */
+.card-body .btn-primary {
+    background-color: #1f6f73;
+    border-color: #1f6f73;
+}
+
+.card-body .btn-primary:hover {
+    background-color: #164f52;
+    border-color: #164f52;
+    transform: translateY(-2px); /* Piccolo scatto verso l'alto per interattività */
+}
+
+/* Intensifica l'ombra azzurra del corpo card quando si passa sopra con il mouse */
+.col .card:hover .card-body {
+    box-shadow: 0 15px 30px #1a617ad0, 0 20px 40px rgba(31, 111, 115, 0.8);
+}
+
+/* Reset dei comportamenti di hover quando la struttura .card viene usata per contenere il libro intero */
+.book .card {
+    width: 100%;
+    transform: none;
+}
+
+@media (min-width: 992px) {
+    .book.card {
+        margin-left: 0;
+        margin-right: 0;
+        max-width: 100%;
+    }
+}
+
+.book .card:hover {
+    transform: none;
+    cursor: default;
+}
+
+/* =============================================
+   5. FOOTER (Barra di navigazione bassa)
+   ============================================= */
+#barra-bassa {
+    background-color: #f8f9fa;
+    width: 100%;
+    margin: 0;
+    padding: 15px 0;
+    border: none;
+    border-top: 1px solid #dee2e6;
+    position: relative;
+    margin-top: 50px;
+    z-index: 1030; /* Assicura che il footer si posizioni graficamente sopra il video di sfondo */
+}
+
+#barra-bassa .navbar-text {
+    color: #1a617a;
+    font-size: 14px;
+}
+
+/* Typo e impaginazione del testo interno del libro */
+.corpo-libro {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.card-title {
+    font-size: x-large;
+    text-align: center;
+    margin-bottom: 4%;
+}
+
+.card-text {
+    font-size: 17px;
+    line-height: 1.6;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 5%;
+}
+
+.sin,
+.dedica,
+.c1,
+.c2 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
+    line-height: 1.8;
+    font-size: 18px;
+    color: #000;
+}
+
+.pagina-interna {
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* Contenitore dei bottoni avanti/indietro della lettura */
+.nav-pagine {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    column-span: all;
+    clear: both; /* Evita l'interferenza con eventuali elementi float precedenti */
+}
+
+#contatore {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .pagina-interna {
+        column-count: 1;
+    }
+}
+
+#c2 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Allinea il bottone di prosecuzione a destra */
+    width: 100%;
+}
+
+/* =============================================
+   6. SEZIONE ICONE E INTERAZIONI NAVBAR
+   ============================================= */
+.home-icon {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    /* Un po' di respiro verticale */
+    color: #333;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.home-icon:hover {
+    color: #0c6a74;
+    transform: scale(1.1); /* Effetto micro-zoom all'hover */
+}
+
+.navbar-nav .nav-item a img {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* Fa saltare verso l'alto e ingrandire l'icona del CV quando ci si passa sopra */
+.navbar-nav .nav-item a:hover img {
+    transform: translateY(-5px) scale(1.2);
+}
+
+/* Questo evita che DC si sovrapponga ai tasti su schermi piccoli */
+@media (max-width: 991px) {
+    .navbar-brand {
+        position: static;
+        transform: none;
+        margin: 0 auto;
+    }
+}
+
+/* =============================================
+    7. SEZIONE TIKTOK - STILE BOOKFLIX 
+   ============================================= */
+
+#tiktok-page {
+    background: black;
+    background-image: none;
+    margin: 0;
+    color: white;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: small;
+}
+
+/* Schermata iniziale di Login / Benvenuto a tutto schermo */
+#login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #141414; /* Grigio scurissimo tipico dell'interfaccia Netflix */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Valore altissimo per bloccare la visualizzazione del sito sotto finché non si accede */
+    margin: 0;
+}
+
+.login-box {
+    width: 90% !important; /* Occupa quasi tutto lo schermo su mobile */
+    max-width: 400px !important; /* Ma non diventa gigante su PC */
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box; /* Evita che il padding sballi le misure */
+}
+
+/* Il bottone rosso stile Netflix */
+.btn-accedi {
+    display: block;
+    margin: 20px auto 0;
+    background: #e50914;
+    /* Rosso Netflix */
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.btn-accedi:hover {
+    background: #f40612;
+    transform: scale(1.05);
+}
+
+/* Nascondi il sito all'inizio */
+#main-content {
+    display: none; /* è JavaScript che la cambierà in 'block' al click su 'Entra' */
+}
+
+#video-intro-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 9999;
+    display: none; /* Viene mostrato solo tramite JS quando premi Entra */
+}
+
+#intro-video {
+    width: 100%;
+    height: 100%;
+    /* Su PC 'cover' va bene perché lo schermo è largo */
+    object-fit: cover;
+}
+
+/* Classe CSS iniettata/gestita via JS per creare la transizione di sparizione dell'intro */
+.fade-out {
+    opacity: 0;
+    pointer-events: none; /* Impedisce di cliccare sul video mentre sparisce */
+    transition: opacity 1.5s ease; /* Sfuma in un secondo e mezzo */
+}
+
+/* Header Netflix: Logo e Menu a sinistra, Icone a destra */
+.netflix-header {
+    display: flex;
+    justify-content: space-between; /* Spinge la navigazione a sinistra e la ricerca/profilo a destra */
+    align-items: center;
+    padding: 0 4%;
+    background-color: #141414;
+    height: 70px;
+    position: sticky; /* Rimane bloccato in cima alla pagina durante lo scorrimento */
+    top: 0;
+    z-index: 1000;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo-container img {
+    height: 120px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    padding: 5px 0;
+    margin-top: 10px;
+    margin-left: 20px;
+    transition: transform 0.3s;
+}
+
+/* FIX NAVIGAZIONE (Orizzontale e senza pallini)*/
+.main-nav ul {
+    display: flex !important;
+    list-style: none !important; /* Rimuove i pallini predefiniti del tag <li> */
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+    align-items: center;
+}
+
+.main-nav ul li {
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav ul li a {
+    text-decoration: none !important; /* Elimina la sottolineatura blu dei link */
+    color: #e5e5e5;
+    font-size: 0.85rem;
+    white-space: nowrap; /* Impedisce che il testo vada a capo */
+    transition: color 0.3s;
+}
+
+.main-nav ul li a:hover {
+    color: #fff;
+}
+
+.main-nav ul li.active a {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Parte destra icone */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Icona SVG di TikTok */
+.tiktok-icon {
+    width: 35px;
+    height: 35px;
+    fill: white;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+}
+
+/* Effetto Glitch cromatico all'hover sul link TikTok */
+.tiktok-link:hover .tiktok-icon {
+    fill: #ff0050;
+    filter: drop-shadow(2px 0 0 #00f2ea) drop-shadow(-2px 0 0 #ff0050);
+    transform: scale(1.1);
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    transition: transform 0.3s ease, stroke 0.3s ease;
+}
+
+#searchInput {
+    padding-right: 35px; /* Lascia spazio per l'icona a destra */
+}
+
+/* Effetto quando l'utente clicca sull'input per scrivere */
+#searchInput:focus+.search-icon {
+    transform: scale(1.1);
+    stroke: #e50914; /* La lente diventa rossa "Netflix" quando scrivi */
+}
+
+/* ==========================================================================
+   8. LO SCROLL ORIZZONTALE DELLE CARD (I caroselli dei libri)
+   ========================================================================== */
+
+.row {
+    margin: 20px 0 40px 50px;
+    overflow: visible;
+    scroll-margin-top: 100px; /* Per i link interni: evita che il titolo finisca sotto la navbar */
+}
+
+.row-title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.4rem;
+    color: #e5e5e5;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+/* Contenitore orizzontale delle copertine */
+.row-posters {
+    display: flex;
+    overflow-x: scroll; /* Abilita lo scorrimento orizzontale */
+    padding: 20px 0;
+    scrollbar-width: none;
+}
+
+/* Nasconde la barra di scorrimento orizzontale su Chrome, Safari e Opera */
+.row-posters:-webkit-scrollbar {
+    display: none;
+}
+
+/* La singola copertina del libro */
+.card-netflix {
+    flex: 0 0 auto; /* Disattiva la crescita e la riduzione: preserva la larghezza fissa impostata sotto */
+    width: 170px;
+    margin-right: 15px;
+    transition: transform 0.4s ease;
+    position: relative;
+    text-decoration: none;
+}
+
+.card-netflix img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Effetto Zoom Netflix quando si passa su una copertina */
+.card-netflix:hover {
+    transform: scale(1.2); /* Ingrandisce la card del 20% */
+    z-index: 10; /* La porta sopra le card vicine per non essere coperta dallo zoom delle altre */
+}
+
+/* La scritta verde sotto le card stile "98% Compatibile" */
+.video-hint {
+    display: block;
+    font-size: 0.7rem;
+    color: #46d369;
+    text-align: center;
+    margin-top: 8px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-weight: bold;
+}
+
+/* Mostra il suggerimento verde solo quando la card è in hover */
+.card-netflix:hover .video-hint {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   9. LA SEZIONE TOP 10 (Numeri giganti sovrapposti)
+   ========================================================================== */
+.top10-card {
+    position: relative;
+    display: flex;
+    align-items: flex-end; /* Allinea il numero e la copertina in basso */
+    margin-right: 30px; /* Più spazio per il numero */
+    flex: 0 0 auto;
+}
+
+/* Lo stile del numero gigante sullo sfondo*/
+.top10-number {
+    font-size: 180px;
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    line-height: 1;
+    color: #000; /* Riempimento nero del numero */
+    -webkit-text-stroke: 4px #5e5e5e; /* Bordo grigio scuro */
+    position: relative;
+    left: 25px; /* Lo spinge un po' a destra per farlo finire dietro la foto */
+    z-index: 1; /* Livello basso: sta sotto la copertina */
+    user-select: none; /* Impedisce la selezione del testo per errore trascinando */
+}
+
+/* Copertina specifica per la top 10 */
+.top10-card .card-netflix {
+    z-index: 2; /* Sta sopra il numero gigante */
+    margin-right: 0;
+    width: 140px;
+}
+
+.top10-card .card-netflix img {
+    height: 200px;
+}
+
+/* Effetto zoom anche qui */
+.top10-card:hover .card-netflix {
+    transform: scale(1.15);
+}
+
+/* Frecce di scorrimento del carosello (visibili solo su PC) */
+.main-nav ul#nav-list {
+    display: flex !important; /* Forza i link a vedersi su PC */
+    list-style: none;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Nascondiamo il tasto hamburger su PC */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+/* Struttura della freccia per lo scroll orizzontale */
+.row-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: visible !important; /* Impedisce che la freccia venga mozzata */
+}
+
+.row-posters {
+    scroll-behavior: smooth;
+    display: flex;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+
+.row-posters::-webkit-scrollbar {
+    display: none;
+}
+
+.handle {
+    position: absolute;
+    height: 250px;
+    width: 45px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+    display: none; /* Nascoste di base, appaiono solo se passi sul carosello */
+    align-items: center;
+    justify-content: center;
+    z-index: 999 !important;
+    transition: all 0.3s ease;
+}
+
+/* Mostra le frecce direzionali quando l'utente passa il mouse sopra l'intera riga */
+.row-wrapper:hover .handle {
+    display: block;
+}
+
+.handle-left {
+    left: 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.handle-right {
+    right: 0;
+    border-radius: 4px 0 0 4px;
+}
+
+/* ==========================================================================
+   10. MEDIA QUERIES - RESPONSIVE DI BOOKFLIX (Mobile First / Breakpoints)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    #intro-video {
+        object-fit: contain !important; /* Su Mobile usiamo 'contain' così il logo non viene tagliato o zoomato */
+        background-color: black;
+    }
+
+    .card-header-tabs {
+        flex-wrap: wrap !important; /*l'iPhone può mandare le scritte a capo su due righe */
+        gap: 8px;                  /* Distanzia i bottoni per non farli sovrapporre verticalmente */
+    }
+
+    /* Trasforma il menu orizzontale in un menu a tendina verticale (Hamburger Menu) */
+    .menu-toggle {
+        display: flex !important;
+        margin-left: 15px;
+    }
+
+    .main-nav ul#nav-list {
+        display: none !important; /* Nascosto di default su mobile */
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: rgba(20, 20, 20, 0.98);
+        padding: 20px 0;
+        z-index: 1000;
+        border-bottom: 2px solid #e50914;
+    }
+
+    /* Classe attivata via JS al click sull'hamburger per aprire la tendina */
+    .main-nav ul#nav-list.show {
+        display: flex !important;
+    }
+
+    .netflix-header {
+        padding: 0 15px;
+    }
+
+    .logo-container img {
+        height: 45px !important;
+        margin-left: 10px;
+    }
+
+    #login-overlay .login-box {
+        width: 90% !important;
+        padding: 15px !important;
+    }
+
+    #login-overlay h1 {
+        font-size: 1.3rem !important;
+    }
+
+    #login-overlay img {
+        width: 200px !important;
+    }
+
+    #video-intro-container video {
+        object-fit: cover;
+    }
+
+    .row {
+        margin-left: 20px !important;
+    }
+
+    .row-title {
+        font-size: 1.1rem !important;
+    }
+
+    /* Ridimensiona le copertine per i telefoni */
+    .row-posters img,
+    .card-netflix img {
+        width: 130px !important;
+        height: 190px !important;
+    }
+
+    /* Nasconde le frecce su mobile (si scorre con le dita) */
+    .handle {
+        display: none !important;
+    }
+
+    /* Ricalibra i numeri giganti per non farli uscire dallo schermo del telefono */
+    .top10-number {
+        font-size: 120px !important;
+        left: 0 !important;
+    }
+
+    .top10-card .card-netflix {
+        margin-left: 60px !important;
+        width: 110px !important;
+    }
+}
+
+/* ==========================================================================
+   11. INTEGRAZIONE BOOTSTRAP E COMPONENTI PERSONALIZZATI (Form e Bottoni Social)
+   ========================================================================== */
+.navbar {
+    border-bottom: 2px solid #b3e5fc;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+/* Personalizzazione tasto "Vuoi collaborare?" */
+.btn-outline-primary.rounded-pill {
+    color: #1f6f73;
+    border-color: #1f6f73;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary.rounded-pill:hover {
+    background-color: #1f6f73;
+    border-color: #1f6f73;
+    color: white;
+    transform: scale(1.05);
+}
+
+#modalCollabora .modal-content {
+    background: linear-gradient(to bottom, #ffffff, #e0f7fa);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+#modalCollabora .form-label {
+    font-family: 'Georgia', serif;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+#modalCollabora .form-control {
+    border-radius: 10px;
+    border: 1px solid #b3e5fc;
+    font-family: 'Arial', sans-serif;
+    font-weight: normal;
+}
+
+#modalCollabora .form-control:focus {
+    border-color: #1f6f73;
+    box-shadow: 0 0 0 0.25rem rgba(31, 111, 115, 0.25);
+}
+
+#modalCollabora input,
+#modalCollabora textarea {
+    font-weight: normal;
+}
+
+/* Stile bottone Wattpad */
+.wattpad-btn {
+    color: #FF8B00;
+    border-color: #FF8B00;
+}
+
+.wattpad-btn:hover {
+    background-color: #FF8B00;
+    color: white;
+}
+
+/* Gestione dell'immagine (logo) */
+.wattpad-logo {
+    transition: all 0.3s ease;
+}
+
+/* Questo cambia l'immagine da arancione a bianca quando passi il mouse sul bottone */
+.wattpad-btn:hover .wattpad-logo {
+    content: url("https://cdn.simpleicons.org/wattpad/white");
+}
+
+/* Stile bottone YouTube */
+.youtube-btn {
+    color: #ff0000;
+    border-color: #ff0000;
+}
+
+.youtube-btn:hover {
+    background-color: #ff0000;
+    color: white;
+}
+
+.youtube-logo {
+    transition: all 0.3s ease;
+}
+
+/* All'hover scambiamo il logo rosso con quello bianco */
+.youtube-btn:hover .youtube-logo {
+    content: url("https://cdn.simpleicons.org/youtube/white");
+}
+
+/* ==========================================================================
+   12. EFFETTO REALISTICO LIBRO SFOGLIABILE (Libreria Esterna Page-Flip)
+   ========================================================================== */
+
+.container.d-flex[style*="position: relative"] {
+    overflow: visible;
+}
+
+#book-container {
+    width: 95%;
+    max-width: 800px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    overflow: visible;
+    position: relative;
+    z-index: 5;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    #book-container {
+        max-width: 800px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    #book-container {
+        max-width: 90%;
+        padding: 0 10px;
+        transform: scale(0.9);
+    }
+}
+
+.flip-book {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), /* Ombra esterna morbida per farlo sembrare sollevato dal tavolo */
+        0 10px 20px rgba(0, 0, 0, 0.4);
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+/* Fa capire che il libro è cliccabile e trascinabile */
+#book {
+    cursor: grab; /* Mostra una manina aperta */
+}
+
+#book:active {
+    cursor: grabbing; /* Quando clicchi e trascini, la manina si chiude */
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    overflow: hidden; /* Impedisce al contenuto di "allungare" la pagina */
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+    box-sizing: border-box;
+}
+
+/* Contenitore interno comune */
+.page-content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* Pagina con la foto che si adatta senza deformarsi o sbordare */
+.photo-page {
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.photo-page img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Simulazione della curvatura e dell'ombra della carta stampata */
+.page-left {
+    background: linear-gradient(to left, #e0e0e0 0%, #ffffff 10%, #ffffff 100%);
+}
+
+/* se il testo è troppo lungo, apparirà una scrollbar discreta */
+.transcription-style {
+    padding: 40px;
+    overflow-y: auto; /* Se la poesia è lunghissima, la scorri dentro la pagina bianca */
+    background: linear-gradient(to right, #e8e8e8 0%, #ffffff 5%, #ffffff 100%);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.transcription-style h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #1f6f73;
+    font-family: 'Georgia', serif;
+}
+
+.testo-contenitore {
+    margin-top: 20%;
+    padding: 70px 5px;
+    width: 100%;
+}
+
+/* Fix specifico per schermi piccoli (iPhone) */
+@media (max-width: 768px) {
+    .testo-contenitore {
+        margin-top: 190px;
+    }
+}
+
+/* Stile specifico per i versi delle poesie */
+.strofa {
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* Allineamento centrato solo per pagine specifiche */
+.transcription-style.testo-centrato {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Aggiunge una linea scura proprio nella "piega" centrale */
+.transcription-style::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 15px;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.2), transparent);
+    pointer-events: none;
+}
+
+/* Effetto bordi "vivi" delle pagine (simula lo spessore dei fogli) */
+.page::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 5px 5px;
+}
+
+/* ==========================================================================
+   13. IL CUORE DI FIRENZE (Mascheramento e forme geometriche avanzate)
+   ========================================================================== */
+.cuore-firenze {
+    width: 300px;
+    height: 300px;
+    margin: 40px auto;
+    background-image: url('../img/firenze/città.jpg');
+    background-size: cover;
+    background-position: center;
+    clip-path: polygon(50% 15%, 80% 0%, 100% 25%, 100% 50%, 50% 100%, 0% 50%, 0% 25%, 20% 0%); /* Forma a cuore */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Transizione con funzione di temporizzazione Bezier per dare un effetto rimbalzo (molla) */
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Effetto al passaggio del mouse: ingrandisce, ruota leggermente di 2 gradi e applica filtri grafici */
+.cuore-firenze:hover {
+    transform: scale(1.1) rotate(2deg);
+    filter: sepia(0.3) brightness(1.1);
+}
+
+.overlay-cuore {
+    background: rgba(31, 111, 115, 0.6);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    opacity: 0;
+    transition: opacity 0.3s;
+    text-align: center;
+}
+
+/* Quando si passa sul cuore, l'overlay interno diventa visibile mostrando la scritta */
+.cuore-firenze:hover .overlay-cuore {
+    opacity: 1;
+}
