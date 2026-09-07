@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tik tok di Denise Booklover</title>
+  <link rel="stylesheet" href="css/miostile.css">
+</head>
+
+<body id="tiktok-page">
+
+  <div id="login-overlay">
+    <div class="login-box">
+      <p style="color: #808080; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px;">Accesso Riservato
+      </p>
+
+      <h1 style="color: white; margin: 0 0 10px 0; font-size: 1.6rem;">
+        Stai per avventurarti <br>
+        nel magico mondo di
+      </h1>
+      <img src="img/bookflixsenzasfondo.png" alt="bookflixlogo"
+        style="max-width: 250px; width: 80%; margin-bottom: 30px; display: block; margin-left: auto; margin-right: auto;">
+
+      <button class="btn-accedi" onclick="entraNelMondo()">Entra</button>
+
+    </div>
+  </div>
+
+  <div id="video-intro-container" style="display: none;">
+    <video id="intro-video" playsinline muted>
+      <source src="video/animazioonebookflix.MP4" type="video/mp4">
+    </video>
+  </div>
+
+  <div id="main-content">
+
+    <header class="netflix-header">
+      <div class="header-left">
+        <div class="logo-container">
+          <img src="img/bookflixsenzasfondo.png" alt="Bookflix Logo" class="logo-img">
+        </div>
+        <nav class="main-nav">
+          <button class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul id="nav-list">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="#consigli">Consigli di lettura</a></li>
+            <li><a href="#recensioni">Recensioni libri</a></li>
+            <li><a href="#freida">Libri di Freida Mcfadden</a></li>
+            <li><a href="#differenze">Differenze tra libri e serie tv</a></li>
+            <li><a href="#prossimamente">Prossime uscite</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="header-right">
+        <div class="search-container">
+          <input type="text" id="searchInput" onkeyup="searchBooks()" placeholder="Inserisci un titolo...">
+
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </div>
+
+        <div class="profile-box">
+          <a href="https://www.tiktok.com/@rebeldenamorada?_r=1&_t=ZN-95clF1wc65u" target="_blank" class="tiktok-link">
+            <svg class="tiktok-icon" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.32c7.87,33.47,31.76,60.16,62.11,74.41,35.6,16.71,71,17,106.69,17.21V209.91Z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+  </div>
+
+
+  <main class="main-container">
+    <section class="row" id="consigli">
+      <h2 class="row-title">Consigli di lettura 💡📖</h2>
+
+      <div class="row-wrapper">
+        <button class="handle handle-left" onclick="scrollRow('consigli', -1)">&#8249;</button>
+
+        <div class="row-posters" id="scroll-consigli">
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7682074349557386529?is_from_webapp=1&sender_device=pc"
+            target="_blank" class="card-netflix">
+            <img src="img/copertinelibri/assassinioavapore.jpg" alt="Assassinio a vapore - Il killer fantasma">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+          
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7677020123571473696?is_from_webapp=1&sender_device=pc"
+            target="_blank" class="card-netflix">
+            <img src="img/copertinelibri/lascialoentrare.jpg" alt="Lascialo entrare">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7674796041710931232?is_from_webapp=1&sender_device=pc&web_id=7614453562852345366"
+            target="_blank" class="card-netflix">
+            <img src="img/copertinelibri/ilquintoospite.jpg" alt="Il quinto ospite">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7623125507361475862" target="_blank"
+            class="card-netflix">
+            <img src="img/copertinelibri/tuttorimaneinfamiglia.jpg" alt="Tutto rimane in famiglia">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7631960502054243606?is_from_webapp=1&sender_device=pc&web_id=7614453562852345366"
+            target="_blank" class="card-netflix">
+            <img src="img/copertinelibri/linquilina.jpg" alt="L'inquilina">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7554367439945960726" target="_blank"
+            class="card-netflix">
+            <img src="img/copertinelibri/laprimabugiavince.jpg" alt="La prima bugia vince">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7544378122662235414" target="_blank"
+            class="card-netflix">
+            <img src="img/copertinelibri/teddy.jpg" alt="Teddy">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7527695474078321942" target="_blank"
+            class="card-netflix">
+            <img src="img/copertinelibri/nellacasadellebambole.jpg" alt="Nella casa delle bambole">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7559960573258059030" target="_blank"
+            class="card-netflix">
+            <img src="img/copertinelibri/lapsichiatra.jpg" alt="La psichiatra">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7539191560538262806" target="_blank"
+            class="card-netflix">
+            <img src="img/copertinelibri/acenaconl'assassino.jpg" alt="A cena con l'assassino">
+            <span class="video-hint">98% Compatibile</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7539191560538262806" target="_blank"
+            class="card-netflix">
+            <img src="img/copertinelibri/nonmentire.jpg" alt="Non mentire">
+            <span class="video-hint">98% Compatibile</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7539191560538262806" target="_blank"
+            class="card-netflix">
+            <img src="img/copertinelibri/lorfanotrofiosullalgo.jpg" alt="L'orfanotrofio sul lago">
+            <span class="video-hint">98% Compatibile</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7539191560538262806" target="_blank"
+            class="card-netflix">
+            <img src="img/copertinelibri/lacasainfondoallastrada.jfif" alt="La casa infondo alla strada">
+            <span class="video-hint">98% Compatibile</span>
+          </a>
+
+          <a href="https://vm.tiktok.com/ZNRxE7Svt/" target="_blank" class="card-netflix">
+            <img src="img/copertinelibri/camminacammina.jpg" alt="Cammina cammina la morte si avvicina">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://vm.tiktok.com/ZNRxE7Svt/" target="_blank" class="card-netflix">
+            <img src="img/copertinelibri/beautifulcreatures.webp" alt="Beautiful creatures">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://vm.tiktok.com/ZNRxE7Svt/" target="_blank" class="card-netflix">
+            <img src="img/copertinelibri/twilight.webp" alt="Twilight">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7469026960522480918" target="_blank"
+            class="card-netflix">
+            <img src="img/copertinelibri/megliosoffrirechemettereinunripostiglioilcuore.jpg"
+              alt="Meglio soffrire che mettere in un ripostiglio il cuore">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7469026960522480918" target="_blank"
+            class="card-netflix">
+            <img src="img/copertinelibri/ungiornoquestodoloretisaràutile.jpg"
+              alt="Un giorno questo dolore ti sarà utile">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7469026960522480918" target="_blank"
+            class="card-netflix">
+            <img src="img/copertinelibri/ancoraunavoltaconte.jpg" alt="Ancora una volta con te">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7469026960522480918" target="_blank"
+            class="card-netflix">
+            <img src="img/copertinelibri/unameravogliosabugia.jpg" alt="Una meravigliosa bugia">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7469026960522480918" target="_blank"
+            class="card-netflix">
+            <img src="img/copertinelibri/unmagnificoequivoco.jpg" alt="Un magnifico equivoco">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@rebeldenamorada/video/7469026960522480918" target="_blank"
+            class="card-netflix">
+            <img src="img/copertinelibri/unincredibilefollia.jpg" alt="Un'incredibile follia">
+            <span class="video-hint">Aggiunto di recente</span>
+          </a>
+
+        </div>
+
+        <button class="handle handle-right" onclick="scrollRow('consigli', 1)">&#8250;</button>
+
+      </div>
+    </section>
+
+    <section class="row" id="top10">
+      <h2 class="row-title">I miei 10 libri thriller preferiti</h2>
+
+      <div class="row-wrapper">
+        <button class="handle handle-left" onclick="scrollRow('top10', -1)">&#8249;</button>
+
+        <div class="row-posters top10-row">
+
+          <div class="top10-card">
+            <span class="top10-number">1</span>
+            <a href="URL_TIKTOK_1" target="_blank" class="card-netflix">
+              <img src="img/copertinelibri/camminacammina.jpg" alt="Libro 1">
+            </a>
+          </div>
+
+          <div class="top10-card">
+            <span class="top10-number">2</span>
+            <a href="URL_TIKTOK_2" target="_blank" class="card-netflix">
+              <img src="img/copertinelibri/nonmentire.jpg" alt="Libro 2">
+            </a>
+          </div>
+
+          <div class="top10-card">
+            <span class="top10-number">3</span>
+            <a href="URL_TIKTOK_3" target="_blank" class="card-netflix">
+              <img src="img/copertinelibri/tuttorimaneinfamiglia.jpg" alt="Libro 3">
+            </a>
+          </div>
+
+          <div class="top10-card">
+            <span class="top10-number">4</span>
+            <a href="URL_TIKTOK_4" target="_blank" class="card-netflix">
+              <img src="img/copertinelibri/teddy.jpg" alt="Libro 4">
+            </a>
+          </div>
+
+          <div class="top10-card">
+            <span class="top10-number">5</span>
+            <a href="URL_TIKTOK_5" target="_blank" class="card-netflix">
+              <img src="img/copertinelibri/lapsichiatra.jpg" alt="Libro 5">
+            </a>
+          </div>
+
+          <div class="top10-card">
+            <span class="top10-number">6</span>
+            <a href="URL_TIKTOK_6" target="_blank" class="card-netflix">
+              <img src="img/copertinelibri/lorfanotrofiosullalgo.jpg" alt="Libro 6">
+            </a>
+          </div>
+
+          <div class="top10-card">
+            <span class="top10-number">7</span>
+            <a href="URL_TIKTOK_7" target="_blank" class="card-netflix">
+              <img src="img/copertinelibri/acenaconl'assassino.jpg" alt="Libro 7">
+            </a>
+          </div>
+
+          <div class="top10-card">
+            <span class="top10-number">8</span>
+            <a href="URL_TIKTOK_8" target="_blank" class="card-netflix">
+              <img src="img/copertinelibri/lospiteperfetta.jpg" alt="Libro 8">
+            </a>
+          </div>
+
+          <div class="top10-card">
+            <span class="top10-number">9</span>
+            <a href="URL_TIKTOK_9" target="_blank" class="card-netflix">
+              <img src="img/copertinelibri/lacasainfondoallastrada.jfif" alt="Libro 9">
+            </a>
+          </div>
+
+          <div class="top10-card">
+            <span class="top10-number">10</span>
+            <a href="URL_TIKTOK_10" target="_blank" class="card-netflix">
+              <img src="img/copertinelibri/nellacasadeisegreti.jpg" alt="Libro 10">
+            </a>
+          </div>
+
+        </div>
+        <button class="handle handle-right" onclick="scrollRow('top10', 1)">&#8250;</button>
+      </div>
+    </section>
+
+    <section class="row" id="prossimamente">
+      <h2 class="row-title">Prossimamente in uscita🍿</h2>
+
+      <div class="row-posters">
+
+        <div class="card-netflix">
+          <img src="img/copertinelibri/diecipiccoliindiani.jfif" alt="Libro" class="book-cover">
+          <span class="video-hint">Prossimamente</span>
+        </div>
+
+        <div class="card-netflix">
+          <img src="img/copertinelibri/assassionioallospecchio.jpg" alt="Assassinio allo specchio" class="book-cover">
+          <span class="video-hint">Prossimamente</span>
+        </div>
+
+        <div class="card-netflix">
+          <img src="img/copertinelibri/lospiteperfetta.jpg" alt="L'ospite perfetta" class="book-cover">
+          <span class="video-hint">Prossimamente</span>
+        </div>
+
+        <div class="card-netflix">
+          <img src="img/copertinelibri/ladonnachesapevatroppo.jpg" alt="La donna che sapeva troppo" class="book-cover">
+          <span class="video-hint">Prossimamente</span>
+        </div>
+
+        <div class="card-netflix">
+          <img src="img/copertinelibri/thedinnerparty.jfif" alt="The dinner party" class="book-cover">
+          <span class="video-hint">Prossimamente</span>
+        </div>
+
+
+      </div>
+    </section>
+
+    <section class="row" id="recensioni">
+      <h2 class="row-title">Recensioni libri📚</h2>
+      <div class="row-posters">
+
+        <a href="https://www.tiktok.com/@rebeldenamorada/video/7535803963455622422?is_from_webapp=1&sender_device=pc&web_id=7614453562852345366"
+          target="_blank" class="card-netflix">
+          <img src="img/copertinelibri/iltramcheviaggiavaneltempo.jpg" alt="Il tram che viaggiava nel tempo">
+          <span class="video-hint">Aggiunto di recente</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@rebeldenamorada/video/7510151553823608066?is_from_webapp=1&sender_device=pc&web_id=7614453562852345366"
+          target="_blank" class="card-netflix">
+          <img src="img/copertinelibri/unaragazzadaltritempi.jpg" alt="Una ragazza d'altri tempi">
+          <span class="video-hint">Aggiunto di recente</span>
+        </a>
+      </div>
+    </section>
+
+
+    <section class="row" id="freida">
+      <h2 class="row-title">Libri di Freida Mcfadden📖</h2>
+      <div class="row-posters">
+
+        <a href="https://www.tiktok.com/@rebeldenamorada/video/7563340779435937046?is_from_webapp=1&sender_device=pc&web_id=7614453562852345366"
+          target="_blank" class="card-netflix">
+          <img src="img/copertinelibri/unadifamiglia.jpg" alt="Una di famiglia">
+          <span class="video-hint">Aggiunto di recente</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@rebeldenamorada/video/7563340779435937046?is_from_webapp=1&sender_device=pc&web_id=7614453562852345366"
+          target="_blank" class="card-netflix">
+          <img src="img/copertinelibri/nellacasadeisegreti.jpg" alt="Nella casa dei segreti">
+          <span class="video-hint">Aggiunto di recente</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@rebeldenamorada/video/7563340779435937046?is_from_webapp=1&sender_device=pc&web_id=7614453562852345366"
+          target="_blank" class="card-netflix">
+          <img src="img/copertinelibri/finchèmortenoncisepari.jpg" alt="Finchè morte non ci separi">
+          <span class="video-hint">Aggiunto di recente</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@rebeldenamorada/video/7563340779435937046?is_from_webapp=1&sender_device=pc&web_id=7614453562852345366"
+          target="_blank" class="card-netflix">
+          <img src="img/copertinelibri/ladonnadellaportaccanto.jpg" alt="La donna della porta accanto">
+          <span class="video-hint">Aggiunto di recente</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@rebeldenamorada/video/7539191560538262806" target="_blank"
+          class="card-netflix">
+          <img src="img/copertinelibri/nonmentire.jpg" alt="Non mentire">
+          <span class="video-hint">Aggiunto di recente</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@rebeldenamorada/video/7592186198970469654?is_from_webapp=1&sender_device=pc&web_id=7614453562852345366"
+          target="_blank" class="card-netflix">
+          <img src="img/copertinelibri/insegnante.jpg" alt="L'insegnante">
+          <span class="video-hint">Aggiunto di recente</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@rebeldenamorada/video/7631960502054243606?is_from_webapp=1&sender_device=pc&web_id=7614453562852345366"
+          target="_blank" class="card-netflix">
+          <img src="img/copertinelibri/linquilina.jpg" alt="L'inquilina">
+          <span class="video-hint">Aggiunto di recente</span>
+        </a>
+
+      </div>
+    </section>
+
+    <section class="row" id="differenze">
+      <h2 class="row-title">Differenze tra libri e serie tv/film📚🎬</h2>
+      <div class="row-posters">
+
+        <a href="https://www.tiktok.com/@rebeldenamorada/video/7466780048134065430?is_from_webapp=1&sender_device=pc&web_id=7614453562852345366"
+          target="_blank" class="card-netflix">
+          <img src="img/copertinelibri/brid1.jpg" alt="Bridgerton">
+          <span class="video-hint">Aggiunto di recente</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@rebeldenamorada/video/7466780048134065430?is_from_webapp=1&sender_device=pc&web_id=7614453562852345366"
+          target="_blank" class="card-netflix">
+          <img src="img/copertinelibri/brid2.jpg" alt="Bridgerton">
+          <span class="video-hint">Aggiunto di recente</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@rebeldenamorada/video/7466780048134065430?is_from_webapp=1&sender_device=pc&web_id=7614453562852345366"
+          target="_blank" class="card-netflix">
+          <img src="img/copertinelibri/brid3.jfif" alt="Bridgerton">
+          <span class="video-hint">Aggiunto di recente</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@rebeldenamorada/video/7466780048134065430?is_from_webapp=1&sender_device=pc&web_id=7614453562852345366"
+          target="_blank" class="card-netflix">
+          <img src="img/copertinelibri/brid4.jpg" alt="Bridgerton">
+          <span class="video-hint">Aggiunto di recente</span>
+        </a>
+
+      </div>
+    </section>
+  </main>
+
+
+  <script>
+    function scrollRow(rowId, direction) {
+      const row = document.querySelector(`#${rowId} .row-posters`);
+      const scrollAmount = row.clientWidth * 0.8;
+      row.scrollBy({
+        left: scrollAmount * direction,
+        behavior: 'smooth'
+      });
+    }
+
+    // FUNZIONE UNIFICATA: Gestisce video e poi mostra il contenuto
+    function entraNelMondo() {
+      const loginOverlay = document.getElementById('login-overlay');
+      const videoContainer = document.getElementById('video-intro-container');
+      const video = document.getElementById('intro-video');
+      const mainContent = document.getElementById('main-content');
+
+      // 1. Nascondi il login box
+      loginOverlay.style.display = 'none';
+
+      // 2. Mostra il video e avvialo
+      videoContainer.style.display = 'block';
+      video.play();
+
+      // 3. Quando il video finisce
+      video.onended = function () {
+        // Effetto sfumatura sul video
+        videoContainer.classList.add('fade-out');
+
+        // Mostra subito il contenuto principale (mentre il video sfuma)
+        mainContent.style.display = 'block';
+
+        // Rimuovi il video dal layout dopo che la sfumatura è finita
+        setTimeout(() => {
+          videoContainer.style.display = 'none';
+        }, 1500);
+      };
+    }
+
+    function searchBooks() {
+      let input = document.getElementById('searchInput').value.toLowerCase();
+      let rows = document.querySelectorAll('.row');
+
+      rows.forEach(row => {
+        let cards = row.querySelectorAll('.card-netflix, .top10-card');
+        let hasVisibleCards = false;
+
+        cards.forEach(card => {
+          let img = card.querySelector('img');
+          let title = img && img.getAttribute('alt') ? img.getAttribute('alt').toLowerCase() : "";
+
+          if (title.includes(input)) {
+            card.style.display = "";
+            hasVisibleCards = true;
+          } else {
+            card.style.display = "none";
+          }
+        });
+
+        row.style.display = hasVisibleCards ? "" : "none";
+      });
+    }
+
+    function toggleMenu() {
+      const navList = document.getElementById('nav-list');
+      // "toggle" aggiunge la classe 'show' se non c'è, o la toglie se c'è
+      navList.classList.toggle('show');
+    }
+  </script>
+</body>
+
+</html>
